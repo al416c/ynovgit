@@ -1,0 +1,42 @@
+package main
+
+import (
+	"github.com/01-edu/z01"
+)
+
+func PrintCombN(n int) {
+	if n <= 0 || n >= 10 {
+		return // Assure que n est dans les limites spécifiées
+	}
+	
+	combination := make([]rune, n) // Pour stocker la combinaison
+	printCombNUtil(combination, 0, 0, n)
+}
+
+func printCombNUtil(combination []rune, index int, start int, n int) {
+	if index == n {
+		printCombination(combination)
+		return
+	}
+
+	for i := start; i < 10; i++ {
+		combination[index] = rune(i + '0') // Convertir int en rune
+		printCombNUtil(combination, index+1, i+1, n) // Appel récursif
+	}
+}
+
+func printCombination(combination []rune) {
+	for i, c := range combination {
+		z01.PrintRune(c)
+		if i < len(combination)-1 {
+			z01.PrintRune(',')
+			z01.PrintRune(' ')
+		}
+	}
+	z01.PrintRune('\n') // Nouvelle ligne à la fin de chaque combinaison
+}
+
+func main() {
+	PrintCombN(1) // Test avec n = 1
+	PrintCombN(3) // Test avec n = 3
+}

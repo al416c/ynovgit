@@ -1,0 +1,8 @@
+package fonction
+
+number :=56
+if number < 100 {
+	Print("ZAZOU")
+}   else if number > 100 {
+	Print("ZAZA")
+}
